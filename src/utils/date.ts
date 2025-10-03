@@ -16,6 +16,20 @@ const MONTHS_EN = [
   'Dec'
 ]
 
+const MONTHS_ES = [
+  'ene',
+  'feb',
+  'mar',
+  'abr',
+  'may',
+  'jun',
+  'jul',
+  'ago',
+  'sep',
+  'oct',
+  'nov',
+  'dic'
+]
 const VALID_SEPARATORS = ['.', '-', '/']
 
 /**
@@ -32,7 +46,7 @@ export function formatDate(date: Date, format?: string): string {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
-  const monthName = MONTHS_EN[date.getMonth()]
+  const monthName = MONTHS_ES[date.getMonth()]
 
   const pad = (num: number) => String(num).padStart(2, '0')
 

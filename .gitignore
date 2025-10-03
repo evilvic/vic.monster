@@ -23,6 +23,9 @@ pnpm-debug.log*
 
 # IDE settings
 .idea/
+.vscode/
+*.swp
+*.swo
 
 # Netlify build output
 .netlify/

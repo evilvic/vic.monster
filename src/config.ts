@@ -3,11 +3,11 @@ import type { ThemeConfig } from './types'
 export const themeConfig: ThemeConfig = {
   // SITE INFO ///////////////////////////////////////////////////////////////////////////////////////////
   site: {
-    website: 'https://astro-chiri.netlify.app/', // Site domain
-    title: 'CHIRI', // Site title
-    author: '3ASH', // Author name
-    description: 'Minimal blog built by Astro', // Site description
-    language: 'en-US' // Default language
+    website: 'https://vic.monster', // Site domain
+    title: 'vic.monster', // Site title
+    author: 'vic', // Author name
+    description: '', // Site description
+    language: 'es-MX' // Default language
   },
 
   // GENERAL SETTINGS ////////////////////////////////////////////////////////////////////////////////////
@@ -16,8 +16,8 @@ export const themeConfig: ThemeConfig = {
     centeredLayout: true, // Use centered layout (false for left-aligned)
     themeToggle: false, // Show theme toggle button (uses system theme by default)
     postListDottedDivider: false, // Show dotted divider in post list
-    footer: true, // Show footer
-    fadeAnimation: true // Enable fade animations
+    footer: false, // Show footer
+    fadeAnimation: false // Enable fade animations
   },
 
   // DATE SETTINGS ///////////////////////////////////////////////////////////////////////////////////////

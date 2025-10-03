@@ -1,6 +1,6 @@
 [build]
   publish = "dist"
-  command = "pnpm run build"
+  command = "npm run build"
 
 # Redirects for Astro static assets
 [[redirects]]
