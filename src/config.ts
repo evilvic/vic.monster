@@ -5,7 +5,7 @@ export const themeConfig: ThemeConfig = {
   site: {
     website: 'https://vic.monster', // Site domain
     title: 'vic.monster', // Site title
-    author: 'vic', // Author name
+    author: 'v', // Author name
     description: '', // Site description
     language: 'es-MX' // Default language
   },
