@@ -1,0 +1,95 @@
+---
+export interface Props {
+  messages: Array<{
+    sender: 'left' | 'right';
+    text: string;
+  }>;
+}
+
+const { messages } = Astro.props;
+---
+
+<div class="chat-container">
+  <div class="chat-messages">
+    {messages.map((message) => (
+      <div class={`message ${message.sender}`}>
+        <div class={`bubble ${message.sender}`}>
+          <div class="message-text">{message.text}</div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .chat-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  
+  .chat-messages {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .message {
+    display: flex;
+    width: 100%;
+  }
+  
+  .message.left {
+    justify-content: flex-start;
+  }
+  
+  .message.right {
+    justify-content: flex-end;
+  }
+  
+  .bubble {
+    max-width: 70%;
+    padding: 0.75rem 1rem;
+    border-radius: 18px;
+    position: relative;
+    word-wrap: break-word;
+  }
+  
+  .bubble.left {
+    background: var(--code-bg);
+    border-bottom-left-radius: 4px;
+    color: var(--text-primary);
+  }
+  
+  .bubble.right {
+    background: var(--text-tertiary);
+    border-bottom-right-radius: 4px;
+    color: var(--text-primary);
+  }
+  
+  .message-text {
+    margin: 0;
+    line-height: 1.4;
+    font-size: 0.95rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 640px) {
+    .chat-container {
+      margin: 1rem;
+      border-radius: 12px;
+    }
+    
+    .chat-messages {
+      padding: 0.75rem;
+    }
+    
+    .bubble {
+      max-width: 85%;
+    }
+  }
+</style>
