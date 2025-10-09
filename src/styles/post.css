@@ -197,6 +197,10 @@
   margin: 0;
 }
 
+.prose blockquote {
+  white-space: pre-line;
+}
+
 .prose blockquote cite {
   display: inline-block;
   margin-top: 0.5em;
