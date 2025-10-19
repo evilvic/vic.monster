@@ -103,15 +103,21 @@ const { posts } = Astro.props as PostListProps
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: var(--font-size-l);        /* Tamaño más grande para títulos */
+    font-weight: var(--font-weight-medium); /* Peso más visible */
+    color: var(--text-primary);
   }
 
   .date {
     margin: 0;
     color: var(--text-secondary);
-    opacity: 0.75;
-    letter-spacing: var(--spacing-s);
+    opacity: 0.6;                    /* Más sutil */
+    letter-spacing: 0.15em;          /* Espaciado más grande entre caracteres */
     flex-shrink: 0;
     white-space: nowrap;
+    font-size: var(--font-size-s);   /* Tamaño más pequeño */
+    font-weight: var(--font-weight-light); /* Peso más ligero */
+    font-variant-numeric: tabular-nums;    /* Números alineados */
   }
 
   .divider {
