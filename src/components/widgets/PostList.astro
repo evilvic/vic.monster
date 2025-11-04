@@ -2,6 +2,7 @@
 import FormattedDate from '@/components/widgets/FormattedDate.astro'
 import type { PostListProps } from '@/types'
 import { themeConfig } from '@/config'
+import { getSlugFromId } from '@/utils/slug'
 
 const { posts } = Astro.props as PostListProps
 ---
@@ -10,7 +11,7 @@ const { posts } = Astro.props as PostListProps
   {
     posts.map((post) => (
       <li>
-        <a href={`/${post.id}/`}>
+        <a href={`/${getSlugFromId(post.id)}/`}>
           <div class={`post-item ${!themeConfig.date.dateOnRight ? 'date-left' : ''}`}>
             {!themeConfig.date.dateOnRight && (
               <p class="date font-features">

@@ -8,8 +8,24 @@ const posts = defineCollection({
   schema: () =>
     z.object({
       title: z.string(),
-      // Transform string to Date object
-      pubDate: z.coerce.date(),
+      // Transform string or Date to Date object, parsing as local date in Mexico timezone (CST/CDT)
+      pubDate: z.preprocess((val) => {
+        // Handle both string and Date inputs
+        if (val instanceof Date) {
+          // If already a Date (from YAML parsing), YAML parses dates as UTC
+          // Extract UTC components to avoid timezone issues
+          const year = val.getUTCFullYear()
+          const month = val.getUTCMonth() + 1
+          const day = val.getUTCDate()
+          // Create date at noon in local timezone to avoid timezone issues
+          return new Date(year, month - 1, day, 12, 0, 0)
+        }
+        // If string, parse it
+        const str = String(val)
+        const [year, month, day] = str.split('-').map(Number)
+        // Create date at noon in local timezone to avoid timezone issues
+        return new Date(year, month - 1, day, 12, 0, 0)
+      }, z.date()),
       image: z.string().optional()
     })
 })

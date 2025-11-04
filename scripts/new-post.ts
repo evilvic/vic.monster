@@ -15,13 +15,20 @@ const rawTitle: string = titleArgs.length > 0 ? titleArgs.join(' ') : 'new-post'
 const isDraft: boolean = rawTitle.startsWith('_')
 const displayTitle: string = isDraft ? rawTitle.slice(1) : rawTitle
 
+// Generate date prefix in YYMMDD format
+const now = new Date()
+const year = now.getFullYear().toString().slice(-2) // Last 2 digits of year
+const month = (now.getMonth() + 1).toString().padStart(2, '0') // Month (01-12)
+const day = now.getDate().toString().padStart(2, '0') // Day (01-31)
+const datePrefix = `${year}${month}${day}`
+
 const fileName: string = rawTitle
   .toLowerCase()
   .replace(/[^a-z0-9\s-_]/g, '') // Remove special characters but keep underscore and hyphen
   .replace(/\s+/g, '-') // Replace spaces with hyphens
   .replace(/-+/g, '-') // Replace multiple hyphens with single
   .replace(/^-|-$/g, '') // Remove leading/trailing hyphens
-const targetFile: string = `${fileName}.md`
+const targetFile: string = `${datePrefix}_${fileName}.md`
 const fullPath: string = join('src/content/posts', targetFile)
 
 // Check if the target file already exists

@@ -6,6 +6,7 @@ import MarkdownIt from 'markdown-it'
 import { parse as htmlParser } from 'node-html-parser'
 import sanitizeHtml from 'sanitize-html'
 import { themeConfig } from '@/config'
+import { getSlugFromId } from '@/utils/slug'
 import path from 'node:path'
 
 const markdownParser = new MarkdownIt({
@@ -131,7 +132,7 @@ async function generateFeedInstance(context: APIContext) {
   )
 
   for (const post of sortedPosts) {
-    const postSlug = post.id.replace(/\.[^/.]+$/, '')
+    const postSlug = getSlugFromId(post.id)
     const postUrl = new URL(postSlug, siteUrl).toString()
     const rawHtml = markdownParser.render(post.body || '')
     const processedHtml = await fixRelativeImagePaths(rawHtml, siteUrl, post.id)
