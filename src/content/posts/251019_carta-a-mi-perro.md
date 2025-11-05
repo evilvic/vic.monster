@@ -42,6 +42,6 @@ La pandemia fue terrible, pero hubo algunas oportunidades, algunas cosas buenas 
 Me has cambiado la vida. No hay otro ser que me dé lo que tú sí.
 Te amo con todas mis fuerzas y lo demostraré procurándote siempre, con todo mi ser.
 
-![vic durmiendo](./_assets/perri.png)
+![vic durmiendo](./_assets/251019_perri.png)
 
 { Ahora haces berrinche, llevo demasiado tiempo en la computadora }
