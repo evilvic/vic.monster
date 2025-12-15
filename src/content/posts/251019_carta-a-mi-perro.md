@@ -1,7 +1,7 @@
 ---
 title: 'Carta a mi perro'
 pubDate: 2025-10-19
-image: './_assets/perri.png'
+image: './_assets/251019_perri.png'
 ---
 
 Mi querido vic:

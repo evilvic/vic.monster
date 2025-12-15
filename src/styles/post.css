@@ -438,6 +438,31 @@
   background-color: var(--border);
 }
 
+.prose .footnotes ol {
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+}
+
+.prose .footnotes ol li {
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  line-height: 1.4 !important;
+}
+
+.prose .footnotes ol li p {
+  margin: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+  line-height: 1.4 !important;
+}
+
+.prose .footnotes ol li:last-child {
+  margin-bottom: 0 !important;
+}
+
 .prose cite {
   font-style: normal;
 }
