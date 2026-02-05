@@ -1,0 +1,130 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import type { ImageMetadata } from 'astro'
+import { getImage } from 'astro:assets'
+import path from 'node:path'
+import { getSlugFromId } from '@/utils/slug'
+
+type Props = {
+  posts: Array<CollectionEntry<'posts'>>
+}
+
+const { posts } = Astro.props as Props
+
+const imagesGlob = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/content/posts/_assets/**/*.{jpeg,jpg,png,gif,webp}'
+)
+
+function resolveLocalImageKey(postId: string, src: string): string | null {
+  const postDir = path.posix.dirname(postId)
+
+  if (src.startsWith('./')) {
+    return path.posix.join('/src/content/posts', postDir, src.slice(2))
+  }
+
+  if (src.startsWith('../')) {
+    return path.posix.resolve('/src/content/posts', postDir, src)
+  }
+
+  // If someone passes a full key, accept it.
+  if (src.startsWith('/src/content/posts/')) {
+    return src
+  }
+
+  return null
+}
+
+const tiles = await Promise.all(
+  posts.map(async (post) => {
+    const rawSrc = post.data.image
+    if (!rawSrc) return null
+
+    const key = resolveLocalImageKey(post.id, rawSrc)
+    if (!key) return null
+
+    const loader = imagesGlob[key]
+    if (!loader) return null
+
+    const mod = await loader()
+    const optimized = await getImage({
+      src: mod.default,
+      format: 'webp',
+      width: 900
+    })
+
+    return {
+      href: `/${getSlugFromId(post.id)}/`,
+      title: post.data.title,
+      src: optimized.src,
+      attributes: optimized.attributes
+    }
+  })
+)
+
+const images = tiles.filter(Boolean) as Array<NonNullable<(typeof tiles)[number]>>
+---
+
+{images.length > 0 ? (
+  <div class="photo-mosaic" aria-label="Indice de fotos">
+    {images.map((img) => (
+      <a class="photo-tile" href={img.href} title={img.title} aria-label={`Abrir: ${img.title}`}>
+        <img
+          src={img.src}
+          width={img.attributes.width}
+          height={img.attributes.height}
+          alt={img.title}
+          loading="lazy"
+          decoding="async"
+        />
+      </a>
+    ))}
+  </div>
+) : (
+  <p class="photos-empty">No hay fotos todavia.</p>
+)}
+
+<style>
+  .photos-empty {
+    margin: 0;
+    color: var(--text-secondary);
+  }
+
+  /* Masonry sin JS: organico y silencioso (no "grid" perceptible). */
+  .photo-mosaic {
+    column-count: 2;
+    column-gap: 0.75rem;
+  }
+
+  @media (min-width: 900px) {
+    .photo-mosaic {
+      column-count: 3;
+    }
+  }
+
+  .photo-tile {
+    display: block;
+    break-inside: avoid;
+    margin: 0 0 0.75rem 0;
+    text-decoration: none;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--astro-code-background);
+    border: 0.5px solid var(--border);
+    transition:
+      border-color 0.2s ease-out,
+      background 0.2s ease-out,
+      opacity 0.2s ease-out;
+  }
+
+  .photo-tile:hover {
+    border-color: color-mix(in srgb, var(--text-tertiary) 65%, transparent);
+    background: color-mix(in srgb, var(--selection) 75%, transparent);
+  }
+
+  .photo-tile img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>
+

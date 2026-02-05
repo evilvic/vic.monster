@@ -1,0 +1,24 @@
+---
+import IndexLayout from '@/layouts/IndexLayout.astro'
+import PhotoMosaic from '@/components/widgets/PhotoMosaic.astro'
+import { themeConfig } from '@/config'
+import { getSortedFilteredPosts } from '@/utils/draft'
+
+const posts = await getSortedFilteredPosts()
+const postsWithImages = posts.filter((post) => Boolean(post.data.image))
+---
+
+<IndexLayout
+  title={`fotos · ${themeConfig.site.title}`}
+  description={themeConfig.site.description}
+>
+  <section class="photos-page">
+    <PhotoMosaic posts={postsWithImages} />
+  </section>
+</IndexLayout>
+
+<style>
+  .photos-page {
+    margin-top: 1.5rem;
+  }
+</style>

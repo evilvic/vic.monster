@@ -1,12 +1,25 @@
 ---
 import { themeConfig } from '@/config'
 import ThemeToggle from '@/components/ui/ThemeToggle.astro'
+
+const pathname = Astro.url?.pathname || '/'
+const isFotos = pathname === '/fotos' || pathname.startsWith('/fotos/')
 ---
 
 <header>
   <nav>
-    <a href="/">{themeConfig.site.title}</a>
-    <ThemeToggle />
+    <a href="/" class="site-title">{themeConfig.site.title}</a>
+    <div class="nav-right">
+      <a
+        href="/fotos"
+        class={`photos-link ${isFotos ? 'active' : ''}`}
+        aria-current={isFotos ? 'page' : undefined}
+        aria-label="Abrir fotos"
+      >
+        fotos
+      </a>
+      <ThemeToggle />
+    </div>
   </nav>
 </header>
 <style>
@@ -18,7 +31,7 @@ import ThemeToggle from '@/components/ui/ThemeToggle.astro'
     justify-content: space-between;
     align-items: center;
   }
-  header a {
+  .site-title {
     font-weight: var(--font-weight-bold);
     font-size: 1.5rem;              /* Tamaño más grande */
     color: var(--text-primary);
@@ -26,5 +39,34 @@ import ThemeToggle from '@/components/ui/ThemeToggle.astro'
     min-width: 3rem;
     display: inline-block;
     letter-spacing: -0.02em;         /* Espaciado más compacto */
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  /* Enlace discreto, con copy visible. */
+  .photos-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-tertiary);
+    opacity: 0.55;
+    font-size: 1rem;
+    font-weight: var(--font-weight-light);
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+    transition:
+      color 0.2s ease-out,
+      opacity 0.2s ease-out;
+  }
+
+  .photos-link:hover,
+  .photos-link:focus-visible,
+  .photos-link.active {
+    color: var(--text-primary);
+    opacity: 1;
   }
 </style>
