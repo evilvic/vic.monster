@@ -5,7 +5,7 @@
   <xsl:template match="/">
     <html xmlns="http://www.w3.org/1999/xhtml">
       <head>
-        <title><xsl:value-of select="/atom:feed/atom:title" /> - Atom Feed</title>
+        <title><xsl:value-of select="/atom:feed/atom:title" /> - Feed Atom</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <style type="text/css">
@@ -72,11 +72,11 @@
           </div>
           <div class="divider"></div>
           <div class="description">
-            To subscribe, copy the URL from the address bar and add it to your feed reader.
+            Para suscribirte, copia la URL de la barra de direcciones y agregala a tu lector de feeds.
           </div>
 
           <div class="footer">
-            <span>Last Updated: </span>
+            <span>Ultima actualizacion: </span>
             <xsl:variable name="dateStr" select="/atom:feed/atom:updated" />
             <xsl:variable name="year" select="substring($dateStr, 1, 4)" />
             <xsl:variable name="month" select="substring($dateStr, 6, 2)" />

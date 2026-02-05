@@ -26,7 +26,7 @@ export default function rehypeCopyCode() {
           properties: {
             className: ['copy-button'],
             type: 'button',
-            'aria-label': 'Copy code'
+            'aria-label': 'Copiar codigo'
           },
           children: []
         }

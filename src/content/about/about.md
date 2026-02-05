@@ -1,8 +1,8 @@
 ---
-title: 'About'
+title: 'Acerca'
 ---
 
 <!--
-This content will be displayed at the top of the index page.
-You can leave this empty if you don’t want to show any content.
+Este contenido se mostrara al inicio de la pagina principal.
+Puedes dejarlo vacio si no quieres mostrar contenido.
 -->
