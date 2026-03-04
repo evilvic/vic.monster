@@ -1,5 +1,5 @@
 ---
-title: 'Ya no puedo más'
+title: 'Ya no aguanto más'
 pubDate: '2026-03-03'
 ---
 
