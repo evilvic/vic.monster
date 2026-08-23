@@ -15,3 +15,5 @@ Mientras Martina y {v} discutían, ella dijo algo como —yo he sufrido más; la
 ¿Tengo que?
 
 Necesito saber.
+
+![Chocolates](./_assets/260823_afuera.png)
