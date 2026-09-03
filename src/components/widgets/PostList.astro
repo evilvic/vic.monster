@@ -118,7 +118,8 @@ const { posts } = Astro.props as PostListProps
     white-space: nowrap;
     font-size: var(--font-size-s);   /* Tamaño más pequeño */
     font-weight: var(--font-weight-light); /* Peso más ligero */
-    font-variant-numeric: tabular-nums;    /* Números alineados */
+    font-family: var(--mono);              /* Urbanist NO tiene tnum: sus dígitos van de 550 a 1194 unidades */
+    font-variant-numeric: tabular-nums;    /* Redundante con mono; queda por si cambia la familia */
   }
 
   .divider {
