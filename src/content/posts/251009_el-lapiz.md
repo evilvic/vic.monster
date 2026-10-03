@@ -3,7 +3,7 @@ title: El lápiz
 pubDate: '2025-10-09'
 ---
 
-> El lápiz dibuja un sendero. Lega a la montaña y recorre
+> El lápiz dibuja un sendero. Llega a la montaña y recorre
 > su perfil, desciende y encuentra un lago. Dibuja una barca
 > y en el camino encuentra una isla de plantas extrañas que el lápiz registra y cataloga.  
 >  
