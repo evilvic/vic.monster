@@ -1,9 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import type { ImageMetadata } from 'astro'
-import { getImage } from 'astro:assets'
-import path from 'node:path'
 import { getSlugFromId } from '@/utils/slug'
+import { getPostImage } from '@/utils/postImage'
 
 type Props = {
   posts: Array<CollectionEntry<'posts'>>
@@ -11,46 +9,10 @@ type Props = {
 
 const { posts } = Astro.props as Props
 
-const imagesGlob = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/content/posts/_assets/**/*.{jpeg,jpg,png,gif,webp}'
-)
-
-function resolveLocalImageKey(postId: string, src: string): string | null {
-  const postDir = path.posix.dirname(postId)
-
-  if (src.startsWith('./')) {
-    return path.posix.join('/src/content/posts', postDir, src.slice(2))
-  }
-
-  if (src.startsWith('../')) {
-    return path.posix.resolve('/src/content/posts', postDir, src)
-  }
-
-  // If someone passes a full key, accept it.
-  if (src.startsWith('/src/content/posts/')) {
-    return src
-  }
-
-  return null
-}
-
 const tiles = await Promise.all(
   posts.map(async (post) => {
-    const rawSrc = post.data.image
-    if (!rawSrc) return null
-
-    const key = resolveLocalImageKey(post.id, rawSrc)
-    if (!key) return null
-
-    const loader = imagesGlob[key]
-    if (!loader) return null
-
-    const mod = await loader()
-    const optimized = await getImage({
-      src: mod.default,
-      format: 'webp',
-      width: 900
-    })
+    const optimized = await getPostImage(post, { format: 'webp', width: 900 })
+    if (!optimized) return null
 
     return {
       href: `/${getSlugFromId(post.id)}/`,

@@ -1,9 +1,10 @@
-import { getCollection } from 'astro:content'
 import { OGImageRoute } from 'astro-og-canvas'
 import { themeConfig } from '../../config'
 import { getSlugFromId } from '@/utils/slug'
+import { getFilteredPosts } from '@/utils/draft'
 
-const collectionEntries = await getCollection('posts')
+// Drafts (`_` prefix) get no card: once the title renders, the card would publish it
+const collectionEntries = await getFilteredPosts()
 
 // Map the array of content collection entries to create an object.
 // Converts [{ id: '251004_post.md', data: { title: 'Example', pubDate: Date } }]
@@ -42,8 +43,11 @@ export const { getStaticPaths, GET } = OGImageRoute({
         families: ['Urbanist']
       }
     },
+    // Font files, not a stylesheet URL: CanvasKit needs TTF data, and with the CSS URL
+    // it silently drew no text (every card came out blank)
     fonts: [
-      'https://fonts.bunny.net/css?family=urbanist:400,500,600,700'
+      './src/assets/fonts/og/Urbanist-SemiBold.ttf',
+      './src/assets/fonts/og/Urbanist-Medium.ttf'
     ]
   })
 })

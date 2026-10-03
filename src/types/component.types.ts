@@ -12,6 +12,7 @@ export interface PostLayoutProps {
   image?: string
   readingTime?: ReadingTime
   toc?: TOCItem[]
+  ogImage?: string
 }
 
 // Transition props interface
