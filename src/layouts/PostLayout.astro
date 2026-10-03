@@ -19,22 +19,28 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 
 import { themeConfig } from '@/config'
 
-const { title, pubDate, readingTime, toc, ogImage: postImage } = Astro.props as PostLayoutProps
+const {
+  title,
+  pubDate,
+  readingTime,
+  toc,
+  ogImage: postImage,
+  description: postDescription
+} = Astro.props as PostLayoutProps
 
 // The post's own image if it has one; otherwise the generated title card
 const postSlug = Astro.url.pathname.split('/').filter(Boolean).pop() || ''
 const ogImage = postImage ?? `/open-graph/${postSlug}.png`
+const description = postDescription || themeConfig.site.description
 ---
 
-<BaseLayout
-  title={`${title} · ${themeConfig.site.title}`}
-  description={themeConfig.site.description}
-  type="post"
->
+<BaseLayout title={`${title} · ${themeConfig.site.title}`} description={description} type="post">
   <BaseHead
     title={`${title} · ${themeConfig.site.title}`}
-    description={themeConfig.site.description}
+    description={description}
     ogImage={ogImage}
+    type="article"
+    publishedTime={pubDate}
     slot="head"
   />
   <div class="post-container">

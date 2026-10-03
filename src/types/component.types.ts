@@ -13,6 +13,7 @@ export interface PostLayoutProps {
   readingTime?: ReadingTime
   toc?: TOCItem[]
   ogImage?: string
+  description?: string
 }
 
 // Transition props interface
@@ -32,6 +33,9 @@ export interface BaseHeadProps {
   title: string
   description: string
   ogImage?: string
+  // Posts are articles (with their date); everything else is the website
+  type?: 'website' | 'article'
+  publishedTime?: Date
 }
 
 // ImageOptimizer component props interface

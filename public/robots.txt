@@ -1,0 +1,9 @@
+# vic.monster — textos de vic.
+# Abierto a humanos, buscadores y maquinas: leer y citar, si.
+# Entrenar modelos con lo escrito aqui, no. Lo declara el autor.
+
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+Sitemap: https://vic.monster/sitemap-index.xml

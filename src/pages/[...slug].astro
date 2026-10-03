@@ -4,6 +4,7 @@ import PostLayout from '@/layouts/PostLayout.astro'
 import { render } from 'astro:content'
 import { getSlugFromId } from '@/utils/slug'
 import { getPostOgImage } from '@/utils/postImage'
+import { getExcerpt } from '@/utils/excerpt'
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts')
@@ -25,8 +26,17 @@ const toc = remarkPluginFrontmatter.toc || []
 
 // A post with its own image is shared with it
 const ogImage = (await getPostOgImage(post)) ?? undefined
+
+// Its own words describe it: the frontmatter description if set, else its opening
+const description = post.data.description ?? getExcerpt(post.body)
 ---
 
-<PostLayout {...post.data} readingTime={readingTime} toc={toc} ogImage={ogImage}>
+<PostLayout
+  {...post.data}
+  readingTime={readingTime}
+  toc={toc}
+  ogImage={ogImage}
+  description={description}
+>
   <Content />
 </PostLayout>

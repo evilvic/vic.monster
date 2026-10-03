@@ -26,7 +26,9 @@ const posts = defineCollection({
         // Create date at noon in local timezone to avoid timezone issues
         return new Date(year, month - 1, day, 12, 0, 0)
       }, z.date()),
-      image: z.string().optional()
+      image: z.string().optional(),
+      // Optional: without it, the description is the post's opening words
+      description: z.string().optional()
     })
 })
 

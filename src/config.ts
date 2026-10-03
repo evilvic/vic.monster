@@ -6,7 +6,7 @@ export const themeConfig: ThemeConfig = {
     website: 'https://vic.monster', // Site domain
     title: 'vic.monster', // Site title
     author: 'v', // Author name
-    description: '', // Site description
+    description: 'Textos de vic.', // Site description (home and pages without their own)
     language: 'es-MX' // Default language
   },
 
