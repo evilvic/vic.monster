@@ -27,7 +27,7 @@ const images = tiles.filter(Boolean) as Array<NonNullable<(typeof tiles)[number]
 ---
 
 {images.length > 0 ? (
-  <div class="photo-mosaic" aria-label="Indice de fotos">
+  <div class="photo-mosaic" aria-label="Índice de imágenes">
     {images.map((img) => (
       <a class="photo-tile" href={img.href} title={img.title} aria-label={`Abrir: ${img.title}`}>
         <img
@@ -42,7 +42,7 @@ const images = tiles.filter(Boolean) as Array<NonNullable<(typeof tiles)[number]
     ))}
   </div>
 ) : (
-  <p class="photos-empty">No hay fotos todavia.</p>
+  <p class="photos-empty">No hay imágenes todavía.</p>
 )}
 
 <style>

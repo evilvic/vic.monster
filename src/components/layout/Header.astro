@@ -3,7 +3,7 @@ import { themeConfig } from '@/config'
 import ThemeToggle from '@/components/ui/ThemeToggle.astro'
 
 const pathname = Astro.url?.pathname || '/'
-const isFotos = pathname === '/fotos' || pathname.startsWith('/fotos/')
+const isImagenes = pathname === '/imagenes' || pathname.startsWith('/imagenes/')
 ---
 
 <header>
@@ -11,12 +11,15 @@ const isFotos = pathname === '/fotos' || pathname.startsWith('/fotos/')
     <a href="/" class="site-title">{themeConfig.site.title}</a>
     <div class="nav-right">
       <a
-        href="/fotos"
-        class={`photos-link ${isFotos ? 'active' : ''}`}
-        aria-current={isFotos ? 'page' : undefined}
-        aria-label="Abrir fotos"
+        href="/imagenes"
+        class={`photos-link ${isImagenes ? 'active' : ''}`}
+        aria-current={isImagenes ? 'page' : undefined}
+        aria-label="Abrir imágenes"
       >
-        fotos
+        imágenes
+      </a>
+      <a href="https://serie.vic.fail/" class="photos-link" aria-label="Abrir la serie">
+        serie
       </a>
       <ThemeToggle />
     </div>

@@ -5,6 +5,12 @@
 [build.environment]
   NPM_FLAGS = "--legacy-peer-deps"
 
+# /fotos pasó a llamarse /imagenes (9-oct-2026): los enlaces viejos siguen sirviendo
+[[redirects]]
+  from = "/fotos"
+  to = "/imagenes"
+  status = 301
+
 # Redirects for Astro static assets
 [[redirects]]
   from = "/_astro/*"
