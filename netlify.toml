@@ -11,6 +11,20 @@
   to = "/imagenes"
   status = 301
 
+# La escritura se mudó a Substack, Alguien a quien escribir (26-oct-2026): cada texto, al salir allá,
+# redirige desde aquí. `force` porque la página sigue existiendo en el sitio.
+[[redirects]]
+  from = "/carta-a-mi-perro"
+  to = "https://aquienescribir.substack.com/p/carta-a-mi-perro"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/limones"
+  to = "https://aquienescribir.substack.com/p/limones"
+  status = 301
+  force = true
+
 # Redirects for Astro static assets
 [[redirects]]
   from = "/_astro/*"
