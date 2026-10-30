@@ -25,6 +25,15 @@
   status = 301
   force = true
 
+# Fuera de internet, «por ahora» (vic, 30-oct-2026): todo lo demás lleva a Alguien a quien escribir.
+# 302 porque es temporal. Para volver, se borra este bloque. Va después de los dos de arriba, que
+# mandan cada texto a su post, y antes de todo lo demás: gana la primera regla que coincide.
+[[redirects]]
+  from = "/*"
+  to = "https://aquienescribir.substack.com/"
+  status = 302
+  force = true
+
 # Redirects for Astro static assets
 [[redirects]]
   from = "/_astro/*"
